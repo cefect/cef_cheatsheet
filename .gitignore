@@ -1,0 +1,7 @@
+# Quarto rendered site and local project files
+_site/
+.quarto/
+.venv/
+.Rproj.user/
+.DS_Store
+
