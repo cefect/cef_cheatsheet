@@ -2,6 +2,17 @@
 title: "CEF Cheat Sheet"
 ---
 
+## bash
+
+### Get a directory's total size in MB
+
+```bash
+dir_path="/path/to/directory"
+printf "%.2f MB (%s files)\n" \
+  "$(du -sb "$dir_path" | awk '{print $1 / 1024 / 1024}')" \
+  "$(find "$dir_path" -type f | wc -l)"
+```
+
 
 ## Git
 
