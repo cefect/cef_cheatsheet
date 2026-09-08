@@ -10,3 +10,89 @@ List the files in the current directory, including hidden files:
 ls -la
 ```
 
+## Git
+
+### Stop tracking a file
+
+Keep the file locally while removing it from Git tracking:
+
+```bash
+git rm --cached .vscode/htc_AP.bash
+```
+
+### Undo the most recent unpushed commit
+
+Keep the changes staged while moving `HEAD` back one commit:
+
+```bash
+git reset --soft HEAD~1
+```
+
+### Create and push a tag
+
+```bash
+git tag -a v2026.08.21 -m "v2026.08.21"
+git push origin --tags
+```
+
+### Restore a file from another branch
+
+Restore `smk/readme_eval.md` from a remote branch into the current working tree:
+
+```bash
+git restore --source=remotes/origin/64-viirs-prewarp-blocks -- smk/readme_eval.md
+```
+
+### List all branches
+
+```bash
+git branch -a
+```
+
+### Merge without committing
+
+This may fast-forward and therefore create no merge commit:
+
+```bash
+git merge --no-commit <branch>
+git merge --abort
+```
+
+### Cherry-pick a commit
+
+Apply a specific commit to the current branch:
+
+```bash
+git cherry-pick 1dd0d9bd9e50e41e6d9d7dfc25326155cbb77800
+```
+
+## tmux
+
+### Create or attach to a session
+
+```bash
+tmux new -s session_name
+tmux attach -t <session-name>
+```
+
+### Detach from a session
+
+Press `Ctrl+b`, then `d`.
+
+### List all sessions
+
+```bash
+tmux list-sessions
+```
+
+### Stop every tmux session on the host
+
+```bash
+tmux kill-server
+```
+
+### Stop one session
+
+```bash
+tmux kill-session -t NFHL_process
+```
