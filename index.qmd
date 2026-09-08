@@ -18,10 +18,10 @@ printf "%.2f MB (%s files)\n" \
 
 ### Stop tracking a file
 
-Keep the file locally while removing it from Git tracking:
+Keep the file on disk while removing it from Git tracking/cache:
 
 ```bash
-git rm --cached .vscode/htc_AP.bash
+git rm --cached <file>
 ```
 
 ### Undo the most recent unpushed commit
