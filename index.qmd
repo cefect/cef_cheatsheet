@@ -2,13 +2,6 @@
 title: "CEF Cheat Sheet"
 ---
 
-## Bash
-
-List the files in the current directory, including hidden files:
-
-```bash
-ls -la
-```
 
 ## Git
 
