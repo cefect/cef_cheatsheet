@@ -100,3 +100,12 @@ tmux kill-server
 ```bash
 tmux kill-session -t NFHL_process
 ```
+
+
+## GitHub
+
+re-run failed
+
+```bash
+gh run rerun --failed
+```
