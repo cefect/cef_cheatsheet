@@ -13,7 +13,6 @@ printf "%.2f MB (%s files)\n" \
   "$(find "$dir_path" -type f | wc -l)"
 ```
 
-
 ## Git
 
 ### Stop tracking a file
@@ -109,3 +108,21 @@ re-run failed
 ```bash
 gh run rerun --failed
 ```
+
+## tar
+
+### Create a tarball without compression
+
+```bash
+tar -cf archive.tar path/to/files
+```
+
+### Create a highly compressed tarball
+
+Zstandard provides strong compression with practical decompression speed:
+
+```bash
+tar -I 'zstd -19' -cf archive.tar.zst path/to/files
+```
+
+GeoTIFFs may already be internally compressed, so the size reduction can be modest.
