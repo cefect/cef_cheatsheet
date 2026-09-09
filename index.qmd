@@ -13,6 +13,24 @@ printf "%.2f MB (%s files)\n" \
   "$(find "$dir_path" -type f | wc -l)"
 ```
 
+Remove specific files (and preview)
+```bash
+# Build reusable find arguments for the workflow_outdir_eval directory.
+args=(
+  -H workflow_outdir_eval  # Search this directory and follow command-line symlinks.
+  -type d                 # Match directories.
+  -name .cache            # Match directories named .cache.
+  -prune                  # Do not descend into matched .cache directories.
+  -o                      # Otherwise, evaluate the next expression.
+  -type d                 # Match directories again for the alternate branch.
+  -name FIMBench           # Match directories named FIMBench.
+  -prune                  # Do not descend into matched FIMBench directories.
+)
+# Search recursively while pruning .cache and FIMBench directories from traversal.
+find "${args[@]}" -print                  # Preview every matched path.
+find "${args[@]}" -exec rm -rf -- {} +    # Remove every matched path in batches.
+```
+
 ### System information
 
 Get the current user name. (coreutils 9.4)
