@@ -13,6 +13,24 @@ printf "%.2f MB (%s files)\n" \
   "$(find "$dir_path" -type f | wc -l)"
 ```
 
+### Get the user name
+
+```bash
+id -un
+```
+
+### Get the operating system
+
+```bash
+uname -srm
+```
+
+### Restart the system
+
+```bash
+sudo reboot
+```
+
 ## Git
 
 ### Stop tracking a file
