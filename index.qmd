@@ -166,3 +166,33 @@ Create a highly compressed tarball with Zstandard; GeoTIFFs may already be inter
 ```bash
 tar -I 'zstd -19' -cf archive.tar.zst path/to/files
 ```
+
+
+## rsync
+
+Interpret the `--itemize-changes` (`-i`) flags shown before each path. (rsync 3.2.7)
+
+- The complete format is `YXcstpoguax`.
+  - `Y`: update type.
+    - `c`: a local change or creation occurred.
+    - `.`: the item was not updated.
+    - `*`: the remaining output contains an rsync message.
+  - `X`: item type.
+    - `f`: file.
+    - `d`: directory.
+    - `L`: symlink.
+    - `D`: device.
+  - `cstpoguax`: changed attributes, in order.
+    - `c`: checksum or file value.
+    - `s`: size.
+    - `t`: modification time.
+    - `p`: permissions.
+    - `o`: owner.
+    - `g`: group.
+    - `u`, `n`, or `b`: access time, create time, or both.
+    - `a`: ACL.
+    - `x`: extended attributes.
+    - `+`: the attribute is new or not applicable.
+- Examples:
+  - `cd+++++++++ ./`: rsync created the directory `./`.
+  - `cd+++++++++ build_workflows/`: rsync created the directory `build_workflows/`.
