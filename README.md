@@ -2,6 +2,8 @@
 
 Quarto source for a compact, GitHub Pages-hosted cheat sheet.
 
+[CEF Cheat Sheet](https://cefect.github.io/cef_cheatsheet/)
+
 ## Local preview
 
 Install [Quarto](https://quarto.org/docs/get-started/) and run:
