@@ -8,9 +8,20 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: bash.qmd
+        text: Bash
+      - href: git.qmd
+        text: Git
+      - href: tmux.qmd
+        text: tmux
+      - href: github.qmd
+        text: GitHub CLI
+      - href: tar.qmd
+        text: tar
+      - href: rsync.qmd
+        text: rsync
 
 format:
   html:
     theme: cosmo
     toc: true
-

@@ -1,0 +1,47 @@
+---
+title: "Git"
+---
+
+Keep the file on disk while removing it from Git tracking. (Git 2.43.0)
+
+```bash
+git rm --cached <file>
+```
+
+Undo the most recent unpushed commit while keeping changes staged. (Git 2.43.0)
+
+```bash
+git reset --soft HEAD~1
+```
+
+Create and push an annotated tag. (Git 2.43.0)
+
+```bash
+git tag -a v2026.08.21 -m "v2026.08.21"
+git push origin --tags
+```
+
+Restore `smk/readme_eval.md` from a remote branch into the current working tree. (Git 2.43.0)
+
+```bash
+git restore --source=remotes/origin/64-viirs-prewarp-blocks -- smk/readme_eval.md
+```
+
+List local and remote branches. (Git 2.43.0)
+
+```bash
+git branch -a
+```
+
+Merge without committing, then abort if needed; a fast-forward creates no merge commit. (Git 2.43.0)
+
+```bash
+git merge --no-commit <branch>
+git merge --abort
+```
+
+Apply a specific commit to the current branch. (Git 2.43.0)
+
+```bash
+git cherry-pick 1dd0d9bd9e50e41e6d9d7dfc25326155cbb77800
+```

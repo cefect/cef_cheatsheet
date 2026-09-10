@@ -1,0 +1,70 @@
+---
+title: "rsync"
+---
+
+Interpret the `--itemize-changes` (`-i`) flags shown before each path. (rsync 3.2.7)
+
+- The complete format is `YXcstpoguax`.
+  - `Y`: update type.
+    - `c`: a local change or creation occurred.
+    - `.`: the item was not updated.
+    - `*`: the remaining output contains an rsync message.
+  - `X`: item type.
+    - `f`: file.
+    - `d`: directory.
+    - `L`: symlink.
+    - `D`: device.
+  - `cstpoguax`: changed attributes, in order.
+    - `c`: checksum or file value.
+    - `s`: size.
+    - `t`: modification time.
+    - `p`: permissions.
+    - `o`: owner.
+    - `g`: group.
+    - `u`, `n`, or `b`: access time, create time, or both.
+    - `a`: ACL.
+    - `x`: extended attributes.
+    - `+`: the attribute is new or not applicable.
+- Examples:
+  - `cd+++++++++ ./`: rsync created the directory `./`.
+  - `cd+++++++++ build_workflows/`: rsync created the directory `build_workflows/`.
+
+
+a nice rsync command
+
+```bash
+INPUT_SRC_REPO=/workspace
+#DEST_HOST=sscc-linstat-vm
+#DEST_REPO=/home/s/sbryant8/LS/09_REPOS/USFloods_inference
+DEST_HOST=ap2002-chtc-vpn
+DEST_REPO=/home/sbryant8/LS/09_REPOS/USFloods_inference
+
+RSYNC_FILE_LIST="${PWD}/smk/rsync_inputs_files.txt"
+
+
+RSYNC_FLAGS=(
+  # Default quick-check updates files when size or mtime differs.
+  --archive          # Recurse and preserve common file metadata.
+  --recursive        # Recurse into directory entries from --files-from.
+  --verbose          # Print transferred paths.
+  --relative         # Preserve paths relative to the repository root.
+  --delete           # Remove stale destination-only files inside mirrored directories.
+  --itemize-changes  # Show concise per-file change flags.
+  --human-readable   # Show readable file sizes.
+  --info=progress2   # Show aggregate progress.
+  --outbuf=L         # Flush progress and stats promptly.
+  --stats            # Summarize transfer counts and sizes.
+)
+RSYNC_INPUT_ARGS=(
+  --files-from="${RSYNC_FILE_LIST}"
+  "${INPUT_SRC_REPO}/"
+  "${DEST_HOST}:${DEST_REPO}/"
+)
+
+
+ssh "${DEST_HOST}" "mkdir -p '${DEST_REPO}/_inputs/eval'"
+rsync "${RSYNC_FLAGS[@]}" --dry-run "${RSYNC_INPUT_ARGS[@]}"
+
+
+rsync "${RSYNC_FLAGS[@]}" "${RSYNC_INPUT_ARGS[@]}"
+```

@@ -1,0 +1,9 @@
+---
+title: "GitHub CLI"
+---
+
+Rerun failed jobs for a GitHub Actions workflow run. (GitHub CLI 2.45.0)
+
+```bash
+gh run rerun --failed
+```

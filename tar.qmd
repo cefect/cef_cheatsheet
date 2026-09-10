@@ -1,0 +1,15 @@
+---
+title: "tar"
+---
+
+Create a tarball without compression. (GNU tar 1.35)
+
+```bash
+tar -cf archive.tar path/to/files
+```
+
+Create a highly compressed tarball with Zstandard; GeoTIFFs may already be internally compressed, so size reduction can be modest. (GNU tar 1.35; Zstandard 1.5.5)
+
+```bash
+tar -I 'zstd -19' -cf archive.tar.zst path/to/files
+```

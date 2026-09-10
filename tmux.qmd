@@ -1,0 +1,48 @@
+---
+title: "tmux"
+---
+
+Create or attach to a tmux session. (tmux 3.4)
+
+```bash
+tmux new -s session_name
+tmux attach -t <session-name>
+```
+
+Detach from the current tmux session by pressing `Ctrl+b`, then `d`. (tmux 3.4)
+
+List all tmux sessions. (tmux 3.4)
+
+```bash
+tmux list-sessions
+```
+
+List the windows in a tmux session. (tmux 3.4)
+
+```bash
+tmux list-windows -t session_name
+```
+
+Switch to a specific window in a tmux session. (tmux 3.4)
+
+```bash
+tmux select-window -t session_name:window_name
+```
+
+Kill a specific window in a tmux session. (tmux 3.4)
+
+```bash
+tmux kill-window -t session_name:window_name
+```
+
+Stop every tmux session on the host. (tmux 3.4)
+
+```bash
+tmux kill-server
+```
+
+Stop one tmux session. (tmux 3.4)
+
+```bash
+tmux kill-session -t NFHL_process
+```
