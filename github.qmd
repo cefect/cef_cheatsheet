@@ -7,3 +7,15 @@ Rerun failed jobs for a GitHub Actions workflow run. (GitHub CLI 2.45.0)
 ```bash
 gh run rerun --failed
 ```
+
+Commit and push without triggering GitHub Actions `push`/`pull_request` workflows (the skip token goes in the commit message; `git push -o ci.skip` is GitLab-only). (git 2.43.0)
+
+```bash
+git commit -m "docs: fix typo [skip ci]" && git push
+```
+
+Push an empty commit to re-trigger GitHub Actions workflows without changing files. (git 2.43.0)
+
+```bash
+git commit --allow-empty -m "ci: retrigger workflows" && git push
+```
