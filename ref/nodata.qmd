@@ -3,39 +3,45 @@ title: "Nodata / Mask Reference"
 subtitle: "Python & EO workflows"
 format:
   typst:
-    fontsize: 9pt
+    include-in-header: landscape.typ
 ---
 
-+------------------------------+----------------------------+------------------------------------------------+------------------------+
-| Protocol / Standard          | Nodata / Mask Standard     | Check ANY nulls/masks (Python)                 | Notes / Exceptions     |
-+==============================+============================+================================================+========================+
-| `np.array`                   | No built-in nodata.\       | `np.isnan(arr).any()  # float`\                | Must know convention.  |
-|                              | Float: `np.nan`; Int:      | `(arr == nodata).any()  # sentinel`            | No intrinsic nodata    |
-|                              | sentinel (e.g., -9999).    |                                                | concept.               |
-+------------------------------+----------------------------+------------------------------------------------+------------------------+
-| `np.ma.masked_array`         | Boolean mask: `True` =     | `m.mask.any()`                                 | Mask stored separately |
-|                              | invalid.                   |                                                | from data.             |
-+------------------------------+----------------------------+------------------------------------------------+------------------------+
-| `pd.DataFrame`               | `NaN` / `None` / `pd.NA` / | `df.isna().to_numpy().any()`                   | `isna()` normalizes    |
-|                              | `NaT` (dtype-dependent).   |                                                | all NA types.          |
-+------------------------------+----------------------------+------------------------------------------------+------------------------+
-| SQLite                       | SQL `NULL`.                | `SELECT EXISTS(SELECT 1 FROM t WHERE col IS    | Must check per column. |
-|                              |                            | NULL);`                                        | `NULL` ≠ empty string. |
-+------------------------------+----------------------------+------------------------------------------------+------------------------+
-| rasterio                     | Mask: 0 = invalid, 255 =   | `(src.read_masks(1) == 0).any()`\              | If no mask, may return |
-|                              | valid. nodata value        | `src.read(1, masked=True).mask.any()`          | all-valid mask.        |
-|                              | optional.                  |                                                |                        |
-+------------------------------+----------------------------+------------------------------------------------+------------------------+
-| GDAL                         | Mask band: 0 = invalid,    | `(band.GetMaskBand().ReadAsArray() ==          | Alpha masks may use    |
-|                              | 255 = valid. Separate      | 0).any()`\                                     | 0–255 range.           |
-|                              | nodata value.              | `(arr == nodata).any()`                        |                        |
-+------------------------------+----------------------------+------------------------------------------------+------------------------+
-| GeoTIFF                      | No universal standard.     | `(src.read_masks(1) == 0).any()`\              | Nodata metadata may be |
-|                              | Often                      | `(src.read(1) == src.nodata).any()`            | absent.                |
-|                              | `TIFFTAG_GDAL_NODATA` +    |                                                |                        |
-|                              | mask band.                 |                                                |                        |
-+------------------------------+----------------------------+------------------------------------------------+------------------------+
-| Earth Engine                 | Per-band mask. 0 masked,   | `img.select('B2').mask()`\                     | Must specify region +  |
-| (`S2_SR_HARMONIZED`)         | >0 valid.                  | `.reduceRegion(ee.Reducer.min(), roi, scale)`\ | scale. Band-specific   |
-|                              |                            | `.get('B2')`                                   | masks.                 |
-+------------------------------+----------------------------+------------------------------------------------+------------------------+
++----------------------+--------------------------------+----------------------------------------------------+
+| Protocol             | Nodata / mask standard         | Check for any nulls/masks (Python)                 |
++======================+================================+====================================================+
+| `np.array`           | None built in: `np.nan`        | `np.isnan(arr).any()`\                             |
+|                      | (float) or a sentinel          | `(arr == nodata).any()`                            |
+|                      | (int)[^conv]                   |                                                    |
++----------------------+--------------------------------+----------------------------------------------------+
+| `np.ma.masked_array` | Boolean mask, `True` =         | `m.mask.any()`                                     |
+|                      | invalid[^sep]                  |                                                    |
++----------------------+--------------------------------+----------------------------------------------------+
+| `pd.DataFrame`       | `NaN` / `None` / `pd.NA` /     | `df.isna().to_numpy().any()`                       |
+|                      | `NaT`[^isna]                   |                                                    |
++----------------------+--------------------------------+----------------------------------------------------+
+| SQLite               | SQL `NULL`[^null]              | `SELECT EXISTS(SELECT 1 FROM t WHERE col IS        |
+|                      |                                | NULL);`                                            |
++----------------------+--------------------------------+----------------------------------------------------+
+| rasterio             | Mask 0 = invalid, 255 = valid; | `(src.read_masks(1) == 0).any()`\                  |
+|                      | nodata optional[^allvalid]     | `src.read(1, masked=True).mask.any()`              |
++----------------------+--------------------------------+----------------------------------------------------+
+| GDAL                 | Mask band 0 / 255 + separate   | `(band.GetMaskBand().ReadAsArray() == 0).any()`\   |
+|                      | nodata value[^alpha]           | `(arr == nodata).any()`                            |
++----------------------+--------------------------------+----------------------------------------------------+
+| GeoTIFF              | No standard; often             | `(src.read_masks(1) == 0).any()`\                  |
+|                      | `TIFFTAG_GDAL_NODATA` + mask   | `(src.read(1) == src.nodata).any()`                |
+|                      | band[^absent]                  |                                                    |
++----------------------+--------------------------------+----------------------------------------------------+
+| Earth Engine         | Per-band mask: 0 = masked, >0  | `img.select('B2').mask()`\                         |
+|                      | = valid[^ee]                   | `.reduceRegion(ee.Reducer.min(), roi, scale)`\     |
+|                      |                                | `.get('B2')`                                       |
++----------------------+--------------------------------+----------------------------------------------------+
+
+[^conv]: Must know the convention; no intrinsic nodata concept.
+[^sep]: Mask stored separately from data.
+[^isna]: `isna()` normalizes all NA types.
+[^null]: Check per column; `NULL` ≠ empty string.
+[^allvalid]: With no mask, may return an all-valid mask.
+[^alpha]: Alpha masks may use the 0–255 range.
+[^absent]: Nodata metadata may be absent.
+[^ee]: e.g., `S2_SR_HARMONIZED`; must specify region + scale; masks are band-specific.

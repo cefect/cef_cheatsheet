@@ -32,9 +32,11 @@ The preview server opens the rendered site and refreshes when source files chang
 
 - Non-command sheets live in [ref/](ref/).
 - Each renders to HTML plus a one-page US Letter PDF (Typst), linked from the page.
-- Shared print settings: [ref/_metadata.yml](ref/_metadata.yml) and [ref/sheet.typ](ref/sheet.typ).
+- Print rules (12pt min, 6pt min footnotes, one page, greyscale, zebra rows): [ADR 0001](docs/adr/0001-reference-sheet-print-format.md).
+- Shared print settings: [ref/_metadata.yml](ref/_metadata.yml) and [ref/typst-template.typ](ref/typst-template.typ).
 - Landscape sheets add `include-in-header: landscape.typ` under `format: typst:`.
 - Tables are pandoc grid tables; end a cell line with `\` for a hard line break.
+- Put secondary detail in footnotes; reference each footnote once (reused refs print as duplicates).
 - After edits, render one sheet's PDF to `_site/ref/` and confirm it is still one page:
 
 ```bash

@@ -1,11 +1,14 @@
-# Reference sheets: render to the site and to a one-page US Letter PDF (Typst).
+# Reference sheets: render to the site and to a one-page greyscale US Letter PDF (Typst).
+# Print rules: docs/adr/0001-reference-sheet-print-format.md
 format:
   html: default
   typst:
     papersize: us-letter
     margin:
-      x: 0.5in
-      y: 0.5in
-    fontsize: 8pt
+      x: 0.25in
+      y: 0.25in
+    fontsize: 12pt
     page-numbering: false
-    include-before-body: sheet.typ
+    highlight-style: monochrome
+    template-partials:
+      - typst-template.typ

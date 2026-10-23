@@ -1,52 +1,48 @@
 ---
 title: "Python Naming Conventions"
-format:
-  typst:
-    fontsize: 10pt
 ---
 
-+--------------------------------------+----------------------------------+----------------------------------------------+
-| Convention                           | Typical Python use               | Example / well-known Python projects         |
-+======================================+==================================+==============================================+
-| PascalCase / CapWords                | Classes, exceptions, type names. | Python stdlib style; Django model/form/view  |
-|                                      |                                  | classes; pandas `DataFrame`; scikit-learn    |
-|                                      |                                  | estimators.                                  |
-+--------------------------------------+----------------------------------+----------------------------------------------+
-| camelCase / lowerCamelCase           | Uncommon in idiomatic Python;    | Python wrappers around JavaScript, JSON, or  |
-|                                      | mainly used to mirror external   | cloud APIs may preserve upstream camelCase   |
-|                                      | APIs.                            | fields.                                      |
-+--------------------------------------+----------------------------------+----------------------------------------------+
-| `snake_case`                         | Functions, methods, variables,   | Python stdlib, NumPy, pandas, Django, Flask, |
-|                                      | module names.                    | Requests, pytest.                            |
-+--------------------------------------+----------------------------------+----------------------------------------------+
-| `SCREAMING_SNAKE_CASE`               | Constants, environment           | Django settings; Flask config keys; many     |
-|                                      | variables, config flags.         | stdlib constants.                            |
-+--------------------------------------+----------------------------------+----------------------------------------------+
-| `kebab-case` / `dash-case`           | CLI commands, package            | scikit-learn, python-dateutil, pip-tools;    |
-|                                      | distribution names, URLs, docs   | common for PyPI distribution names.          |
-|                                      | slugs. Not valid as a Python     |                                              |
-|                                      | identifier.                      |                                              |
-+--------------------------------------+----------------------------------+----------------------------------------------+
-| `dot.case`                           | Namespaces, config keys, logger  | `logging.getLogger(__name__)`; dotted        |
-|                                      | names, package-like paths.       | packages such as `zope.interface`.           |
-+--------------------------------------+----------------------------------+----------------------------------------------+
-| `path/case`                          | File paths, package directories, | Django app paths; Flask route paths; general |
-|                                      | web routes.                      | package layouts.                             |
-+--------------------------------------+----------------------------------+----------------------------------------------+
-| `test_` prefix                       | Test files, test functions, test | pytest discovery: `test_*.py`, `*_test.py`,  |
-|                                      | methods.                         | `test_` functions, `Test` classes.           |
-+--------------------------------------+----------------------------------+----------------------------------------------+
-| `_leading_underscore`                | Internal/private-by-convention   | Used throughout the stdlib and most large    |
-|                                      | names.                           | Python libraries.                            |
-+--------------------------------------+----------------------------------+----------------------------------------------+
-| `__dunder__`                         | Python special methods and       | `__init__`, `__repr__`, `__iter__`,          |
-|                                      | protocol hooks.                  | `__enter__`; core Python data model.         |
-+--------------------------------------+----------------------------------+----------------------------------------------+
-| `__leading_double_underscore`        | Name-mangled class internals to  | Used selectively inside classes; defined by  |
-|                                      | reduce subclass collisions.      | Python language behavior.                    |
-+--------------------------------------+----------------------------------+----------------------------------------------+
-| Spaced Title Case                    | Human-facing titles, docs        | Sphinx, MkDocs, Read the Docs pages; not     |
-|                                      | headings, UI labels.             | usually code identifiers.                    |
-+--------------------------------------+----------------------------------+----------------------------------------------+
++--------------------------------------+------------------------------+----------------------------+
+| Convention                           | Typical Python use           | Examples                   |
++======================================+==============================+============================+
+| PascalCase / CapWords                | Classes, exceptions, type    | pandas `DataFrame`; Django |
+|                                      | names                        | models                     |
++--------------------------------------+------------------------------+----------------------------+
+| camelCase                            | Rare; mirrors external       | JS / JSON / cloud API      |
+|                                      | APIs[^camel]                 | fields                     |
++--------------------------------------+------------------------------+----------------------------+
+| `snake_case`                         | Functions, methods,          | stdlib, NumPy, pandas,     |
+|                                      | variables, modules           | pytest                     |
++--------------------------------------+------------------------------+----------------------------+
+| `SCREAMING_SNAKE_CASE`               | Constants, env vars, config  | Django settings, Flask     |
+|                                      | flags                        | config                     |
++--------------------------------------+------------------------------+----------------------------+
+| `kebab-case`                         | CLI commands, PyPI names,    | `scikit-learn`,            |
+|                                      | URLs[^kebab]                 | `pip-tools`                |
++--------------------------------------+------------------------------+----------------------------+
+| `dot.case`                           | Namespaces, config keys,     | `getLogger(__name__)`      |
+|                                      | loggers                      |                            |
++--------------------------------------+------------------------------+----------------------------+
+| `path/case`                          | File paths, package dirs,    | Django / Flask routes      |
+|                                      | routes                       |                            |
++--------------------------------------+------------------------------+----------------------------+
+| `test_` prefix                       | Tests (pytest discovery)     | `test_*.py`, `*_test.py`,  |
+|                                      |                              | `Test*`                    |
++--------------------------------------+------------------------------+----------------------------+
+| `_leading_underscore`                | Private by convention        | stdlib, most libraries     |
++--------------------------------------+------------------------------+----------------------------+
+| `__dunder__`                         | Special methods, protocol    | `__init__`, `__repr__`,    |
+|                                      | hooks                        | `__iter__`                 |
++--------------------------------------+------------------------------+----------------------------+
+| `__leading_double_underscore`        | Name-mangled class           | Used selectively in        |
+|                                      | internals[^mangle]           | classes                    |
++--------------------------------------+------------------------------+----------------------------+
+| Spaced Title Case                    | Human-facing titles, UI      | Sphinx / MkDocs headings   |
+|                                      | labels                       |                            |
++--------------------------------------+------------------------------+----------------------------+
 
-**Core rule:** PEP 8 favors CapWords for classes, `snake_case` for functions/variables, and `UPPERCASE_WITH_UNDERSCORES` for constants.
+**Core rule (PEP 8):** CapWords for classes, `snake_case` for functions/variables, `UPPER_CASE` for constants.
+
+[^camel]: Python wrappers may preserve upstream camelCase fields.
+[^kebab]: Not a valid Python identifier; common for PyPI distribution names.
+[^mangle]: Reduces subclass name collisions.
