@@ -20,6 +20,18 @@ website:
         text: tar
       - href: rsync.qmd
         text: rsync
+      - text: Reference
+        menu:
+          - href: ref/dtypes.qmd
+            text: Dtype mapping
+          - href: ref/nodata.qmd
+            text: Nodata / masks
+          - href: ref/naming.qmd
+            text: Python naming
+          - href: ref/distance.qmd
+            text: Longitude distances
+          - href: ref/agents.qmd
+            text: Agents
 
 format:
   html:

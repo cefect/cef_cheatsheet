@@ -4,9 +4,10 @@ This repository uses Quarto to render the site and GitHub Actions to publish it 
 
 ## Prerequisites
 
-Install Quarto and authenticate the GitHub CLI:
+Activate the `cef_cheatsheet` conda env (see [README.md](README.md)) and authenticate the GitHub CLI:
 
 ```bash
+conda activate cef_cheatsheet
 quarto --version
 gh auth login
 ```

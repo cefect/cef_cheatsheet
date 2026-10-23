@@ -1,0 +1,6 @@
+# Development environment for rendering the Quarto site and Typst PDFs.
+name: cef_cheatsheet
+channels:
+  - conda-forge
+dependencies:
+  - quarto=1.9

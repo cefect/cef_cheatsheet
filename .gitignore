@@ -6,3 +6,6 @@ _site/
 .DS_Store
 
 *.code-workspace
+
+/.quarto/
+**/*.quarto_ipynb

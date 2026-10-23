@@ -10,3 +10,11 @@ Quick command reference, organized by tool.
 - [GitHub CLI](github.qmd)
 - [tar](tar.qmd)
 - [rsync](rsync.qmd)
+
+Printable one-page reference sheets (PDF link on each page).
+
+- [Dtype mapping](ref/dtypes.qmd)
+- [Nodata / masks](ref/nodata.qmd)
+- [Python naming](ref/naming.qmd)
+- [Longitude distances](ref/distance.qmd)
+- [Agents](ref/agents.qmd)

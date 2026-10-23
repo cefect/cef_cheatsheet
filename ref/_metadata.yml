@@ -1,0 +1,11 @@
+# Reference sheets: render to the site and to a one-page US Letter PDF (Typst).
+format:
+  html: default
+  typst:
+    papersize: us-letter
+    margin:
+      x: 0.5in
+      y: 0.5in
+    fontsize: 8pt
+    page-numbering: false
+    include-before-body: sheet.typ
