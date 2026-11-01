@@ -21,6 +21,12 @@ git tag -a v2026.08.21 -m "v2026.08.21"
 git push origin --tags
 ```
 
+List tags with their annotation messages, newest version first. (Git 2.43.0)
+
+```bash
+git tag -n --sort=-v:refname
+```
+
 Restore `smk/readme_eval.md` from a remote branch into the current working tree. (Git 2.43.0)
 
 ```bash
