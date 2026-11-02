@@ -57,3 +57,17 @@ sudo reboot
 ```
 
 
+
+## Packages
+
+Refresh package lists and upgrade all packages, installing new dependencies as needed. (apt 2.8.3)
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+Refresh and upgrade without installing new packages or removing existing ones; upgrades that need new dependencies are held back. (apt 2.8.3)
+
+```bash
+sudo apt-get update && sudo apt-get upgrade -y
+```
