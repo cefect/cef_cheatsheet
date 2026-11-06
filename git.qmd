@@ -51,3 +51,35 @@ Apply a specific commit to the current branch. (Git 2.43.0)
 ```bash
 git cherry-pick 1dd0d9bd9e50e41e6d9d7dfc25326155cbb77800
 ```
+
+## Compare with another branch
+
+List commits on the current branch that are not on `dev`. (Git 2.43.0)
+
+```bash
+git log --oneline dev..HEAD
+```
+
+List commits on `dev` that are not on the current branch. (Git 2.43.0)
+
+```bash
+git log --oneline HEAD..dev
+```
+
+Count commits behind (left) and ahead (right) of `dev`. (Git 2.43.0)
+
+```bash
+git rev-list --left-right --count dev...HEAD
+```
+
+Summarize file changes since the current branch split from `dev`. (Git 2.43.0)
+
+```bash
+git diff --stat dev...HEAD
+```
+
+Show changes to one file between `dev` and the working tree. (Git 2.43.0)
+
+```bash
+git diff dev -- <file>
+```
