@@ -9,3 +9,8 @@ _site/
 
 /.quarto/
 **/*.quarto_ipynb
+
+# HUC-001: downloaded data and generated map assets stay out of Git.
+/_outputs/experiments/huc/reference_sheets/
+
+/ref/huc/scripts/__pycache__/

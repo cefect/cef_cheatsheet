@@ -1,0 +1,39 @@
+---
+title: "Nested HUCs: Upper Colorado"
+format: html
+---
+
+Six US Letter reference sheets show the Upper Colorado region (`14`) at successively finer hydrologic unit levels.
+Every sheet uses the same map extent, shaded terrain, and OpenStreetMap context.
+
+## Downloads
+
+- [Complete six-page collection](upper-colorado-nested-hucs.pdf)
+- [HUC 02 — region](huc02.pdf)
+- [HUC 04 — subregions](huc04.pdf)
+- [HUC 06 — basins](huc06.pdf)
+- [HUC 08 — subbasins](huc08.pdf)
+- [HUC 10 — watersheds](huc10.pdf)
+- [HUC 12 — subwatersheds](huc12.pdf)
+- [Complete code, name, and parent lookup (CSV)](upper-colorado-huc-lookup.csv)
+
+## Reading the maps
+
+The outer boundary remains fixed while each page shows a finer subdivision.
+HUC2 and HUC4 labels are shown where they fit; HUC6 through HUC12 are unlabeled.
+Dashed lines show state borders.
+All boundaries remain visible, and the CSV includes every unit.
+Print at actual size on 8.5 × 11-inch paper.
+
+## Sources
+
+Boundaries: [USGS Watershed Boundary Dataset](https://www.usgs.gov/national-hydrography/access-national-hydrography-products), region 14 archive dated 2025-01-08.
+Terrain: [USGS 3DEP elevation service](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer).
+Context: [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), retrieved through a bounded Overpass query under ODbL.
+The build manifest records exact request URLs, checksums, map bounds, and OSM source timestamps.
+
+Outlet circles shrink from HU2 to HU8; larger ancestor rings remain visible.
+Outlet estimates use WBD HU12 downstream routing and OSM river crossings.
+Closed basins have no outlet marker.
+
+Outlet markers and legends appear on HU2–HU8 pages only.

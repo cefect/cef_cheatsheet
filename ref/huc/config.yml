@@ -1,0 +1,94 @@
+# HUC-001: every level uses the same region, page geometry, and cached basemap.
+region:
+  code: "14"
+  name: Upper Colorado
+levels: [2, 4, 6, 8, 10, 12]
+
+# Resolve paths from the repository root, never from the invoking shell's host path.
+paths:
+  build: _outputs/experiments/huc/reference_sheets
+  downloads: _outputs/experiments/huc/reference_sheets/downloads
+  prepared: _outputs/experiments/huc/reference_sheets/prepared
+  manifest: _outputs/experiments/huc/reference_sheets/manifest.json
+  frame: _outputs/experiments/huc/reference_sheets/prepared/frame.json
+  basemap: _outputs/experiments/huc/reference_sheets/prepared/basemap.tif
+  maps: _outputs/experiments/huc/reference_sheets/maps
+  site: _site/ref/huc
+  collection_filename: upper-colorado-nested-hucs.pdf
+  lookup_filename: upper-colorado-huc-lookup.csv
+
+# Numeric bounds and grid are derived from the fetched HUC2 geometry in stage 3.3.
+map:
+  crs: EPSG:5070
+  bounds: null
+  bounds_order: [xmin, ymin, xmax, ymax]
+  padding_fraction_per_side: 0.05
+  fit: expand_to_frame_aspect
+  raster_dpi: 300
+  reuse_basemap: true
+
+# The slots sum to 10.5 inches, within a Letter page with 0.25-inch margins.
+page:
+  width_in: 8.5
+  height_in: 11.0
+  margin_in: 0.25
+  frame_width_in: 8.0
+  slots_height_in:
+    title: 0.5
+    map: 8.75
+    legend: 0.65
+    footer: 0.6
+  body_font_pt: 12
+  label_font_pt: 12
+  title_font_pt: 16.8
+  footnote_font_pt: 8
+
+# Use local OSM vectors and DEM relief so all labels have controlled print sizes.
+basemap:
+  context: osm_local_vectors
+  terrain: usgs_3dep
+  target_dem_resolution_m: 30
+  grayscale: true
+  hillshade:
+    azimuth_deg: 315
+    altitude_deg: 45
+    opacity: 0.3
+  context_features: [major_rivers, water_bodies, major_roads, settlements]
+
+style:
+  current_boundary:
+    color: "#404040"
+    width_pt: 0.6
+  parent_boundary:
+    color: "#202020"
+    width_pt: 1.0
+  region_boundary:
+    color: "#000000"
+    width_pt: 1.4
+  polygon_fill: null
+  show_immediate_parent: true
+  labels:
+    enabled_levels: [2, 4]
+    full_codes: true
+    name_levels: [2, 4, 6]
+    collision_avoidance: true
+    halo_color: "#FFFFFF"
+    halo_width_pt: 1.5
+    disclose_omitted_count: true
+  furniture:
+    north_arrow: false
+    scale_bar: true
+    projection_note: true
+
+# Discover current archives and service schemas during acquisition; do not invent versions.
+sources:
+  wbd_downloads: https://www.usgs.gov/national-hydrography/access-national-hydrography-products
+  wbd_service: https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer
+  osm_extracts: https://download.geofabrik.de/north-america/us.html
+  dem_products: https://www.usgs.gov/3d-elevation-program/about-3dep-products-services
+  osm_attribution: https://www.openstreetmap.org/copyright
+
+# 2026-11-13 revision: map-only pages, dashed state borders, HUC labels at levels 2/4 only.
+
+outlets:
+  marker_diameter_pt: {2: 22, 4: 15, 6: 10, 8: 6}

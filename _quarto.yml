@@ -32,6 +32,8 @@ website:
             text: Longitude distances
           - href: ref/agents.qmd
             text: Agents
+          - href: ref/huc/index.qmd
+            text: Nested HUCs
 
 format:
   html:
