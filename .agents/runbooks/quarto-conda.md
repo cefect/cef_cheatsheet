@@ -5,7 +5,7 @@ Run the existing Conda Quarto launcher when its default share and Deno paths do 
 | Item | Applicability |
 | --- | --- |
 | Environment | CEFTOP WSL, existing `cef_cheatsheet` Conda environment |
-| Last verified | 2026-11-13; Quarto 1.9.38, Typst 0.14.2 |
+| Last verified | 2026-11-14; Quarto 1.9.38, Typst 0.14.2 |
 | Evidence | [ENV-001](../../issues.md#env-001-conda-quarto-launcher-paths) |
 | Authorization | Read-only environment inspection authorized by implementation of plan section 3.1 |
 | Limits | Process-local supported overrides; no installation, package edits, symlinks, or sandbox bypass |
@@ -15,20 +15,23 @@ Run the existing Conda Quarto launcher when its default share and Deno paths do 
 Use the existing environment and inspect its paths before applying the overrides.
 
 1. Locate `cef_cheatsheet` using `conda env list`.
-2. Confirm that its `bin/quarto`, `bin/deno`, and `share/quarto/version` exist.
+2. Confirm that its `bin/quarto`, `bin/deno`, `bin/sass`, and `share/quarto/version` exist.
 3. Activate that environment and set only the process-local overrides below.
 
 ```bash
+conda activate cef_cheatsheet
 export QUARTO_SHARE_PATH="$CONDA_PREFIX/share/quarto"
 export QUARTO_DENO="$CONDA_PREFIX/bin/deno"
+export QUARTO_DART_SASS="$CONDA_PREFIX/bin/sass"
 quarto --version
 quarto --help
 ```
 
 Notes:
-- The launcher explicitly supports both variables; the original environment remains unchanged on disk.
+- Quarto explicitly supports these variables; the original environment remains unchanged on disk.
 - Verification returned version `1.9.38` and successful command help.
-- This verifies startup only; other bundled tool paths and full rendering still require verification before use.
+- `cef_cheatsheet.code-workspace` activates this environment in new WSL terminals and supplies the same overrides.
+- Last render check passed tool discovery but stopped at Deno `openKv` with `unable to open database file` in the Sass cache; see ENV-001 before further troubleshooting.
 
 # 3. Retirement
 

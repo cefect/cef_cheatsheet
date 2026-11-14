@@ -44,3 +44,6 @@ Project issue index and concise development history.
 - **Verification:** version and help succeed with overrides; direct Typst 0.14.2 version/compile help also succeed; full rendering remains unverified.
 - **2026-11-14 — HTML render blocked:** `quarto render --to html` starts with the documented overrides but fails because `bin/tools/x86_64/dart-sass/sass` is missing in the `cef_cheatsheet` environment.
 - **Scope:** encountered while validating the move of tool pages into `pages/`; no environment changes made.
+- **2026-11-14 — workspace configured:** WSL workspace terminals activate `cef_cheatsheet`; added supported `QUARTO_DART_SASS` pointing to its existing `bin/sass`, resolving the missing Sass executable.
+- **Verification:** Quarto 1.9.38 starts in the activated environment; HTML rendering now fails in Deno `openKv` with `unable to open database file` while opening the Sass cache.
+- **Outstanding:** cache access and complete rendering remain unverified; no cache permissions or environment installation changed.

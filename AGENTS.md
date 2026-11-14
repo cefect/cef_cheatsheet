@@ -1,5 +1,11 @@
 # AGENTS.md
 
+## Local rendering
+
+Use the existing `cef_cheatsheet` Conda environment for local Quarto previews and renders.
+Open `cef_cheatsheet.code-workspace` on WSL; new integrated terminals activate this environment and apply its Quarto tool paths.
+For agent shells and launcher path failures, follow [.agents/runbooks/quarto-conda.md](.agents/runbooks/quarto-conda.md).
+
 ## Command reference entries
 
 Use the `add-command-block` skill when adding verified commands to the cheat sheet.
