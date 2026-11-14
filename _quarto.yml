@@ -8,17 +8,17 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: bash.qmd
+      - href: pages/bash.qmd
         text: Bash
-      - href: git.qmd
+      - href: pages/git.qmd
         text: Git
-      - href: tmux.qmd
+      - href: pages/tmux.qmd
         text: tmux
-      - href: github.qmd
+      - href: pages/github.qmd
         text: GitHub CLI
-      - href: tar.qmd
+      - href: pages/tar.qmd
         text: tar
-      - href: rsync.qmd
+      - href: pages/rsync.qmd
         text: rsync
       - text: Reference
         menu:

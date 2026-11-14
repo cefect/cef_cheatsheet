@@ -4,12 +4,12 @@ title: "CEF Cheat Sheet"
 
 Quick command reference, organized by tool.
 
-- [Bash](bash.qmd)
-- [Git](git.qmd)
-- [tmux](tmux.qmd)
-- [GitHub CLI](github.qmd)
-- [tar](tar.qmd)
-- [rsync](rsync.qmd)
+- [Bash](pages/bash.qmd)
+- [Git](pages/git.qmd)
+- [tmux](pages/tmux.qmd)
+- [GitHub CLI](pages/github.qmd)
+- [tar](pages/tar.qmd)
+- [rsync](pages/rsync.qmd)
 
 Printable one-page reference sheets (PDF link on each page).
 

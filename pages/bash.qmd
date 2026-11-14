@@ -2,6 +2,12 @@
 title: "Bash"
 ---
 
+Move or rename a file or directory, prompting before overwriting an existing destination. (coreutils 9.4)
+
+```bash
+mv -i -- <source> <destination>
+```
+
 Get a directory's total size in MB and file count. (coreutils 9.4; findutils 4.9.0; gawk 5.2.1)
 
 ```bash

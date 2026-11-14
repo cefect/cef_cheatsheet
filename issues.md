@@ -42,3 +42,5 @@ Project issue index and concise development history.
 - **Finding:** `share/quarto/version` and `bin/deno` exist; the launcher supports process-local `QUARTO_SHARE_PATH` and `QUARTO_DENO` overrides.
 - **Solution:** [bounded startup runbook](.agents/runbooks/quarto-conda.md); no installation or environment edits performed.
 - **Verification:** version and help succeed with overrides; direct Typst 0.14.2 version/compile help also succeed; full rendering remains unverified.
+- **2026-11-14 — HTML render blocked:** `quarto render --to html` starts with the documented overrides but fails because `bin/tools/x86_64/dart-sass/sass` is missing in the `cef_cheatsheet` environment.
+- **Scope:** encountered while validating the move of tool pages into `pages/`; no environment changes made.

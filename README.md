@@ -2,6 +2,8 @@
 
 Quarto source for a compact, GitHub Pages-hosted cheat sheet.
 
+Tool command pages live in [pages/](pages/), with the homepage in [index.qmd](index.qmd).
+
 [CEF Cheat Sheet](https://cefect.github.io/cef_cheatsheet/)
 
 ## Development environment
