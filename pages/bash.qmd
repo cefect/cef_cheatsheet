@@ -8,6 +8,18 @@ Move or rename a file or directory, prompting before overwriting an existing des
 mv -i -- <source> <destination>
 ```
 
+Show a symlink's details and target (`link -> target`); omit a trailing slash from the symlink path. (coreutils 9.4)
+
+```bash
+ls -ld -- <symlink_path>
+```
+
+Get a file or directory's total apparent size in decimal GB (1 GB = 1,000,000,000 bytes). (coreutils 9.4; gawk 5.2.1)
+
+```bash
+du -sb -- <path> | awk '{printf "%.2f GB\n", $1 / 1e9}'
+```
+
 Get a directory's total size in MB and file count. (coreutils 9.4; findutils 4.9.0; gawk 5.2.1)
 
 ```bash
