@@ -13,9 +13,15 @@ format:
 +============================+============+============+============+==============+==============+==============+
 | `gpt-6-luna`               | 2.5        | 0.25       | 12.5       | 1×           | 1×           | 1×           |
 +----------------------------+------------+------------+------------+--------------+--------------+--------------+
+| `gpt-6.1-terra`            | 25         | 1.25       | 125        | 10×          | 5×           | 10×          |
++----------------------------+------------+------------+------------+--------------+--------------+--------------+
 | `gpt-6-sol`                | 50         | 5          | 250        | 20×          | 20×          | 20×          |
 +----------------------------+------------+------------+------------+--------------+--------------+--------------+
 | `gpt-6.1-sol`              | 50         | 2.5        | 250        | 20×          | 10×          | 20×          |
++----------------------------+------------+------------+------------+--------------+--------------+--------------+
+| `gpt-6.2-sol`              | 50         | 2.5        | 250        | 20×          | 10×          | 20×          |
++----------------------------+------------+------------+------------+--------------+--------------+--------------+
+| `gpt-6.2-astra`            | 200        | 10         | 1,000      | 80×          | 40×          | 80×          |
 +----------------------------+------------+------------+------------+--------------+--------------+--------------+
 | `gpt-6-astra`              | 250        | 25         | 1,250      | 100×         | 100×         | 100×         |
 +----------------------------+------------+------------+------------+--------------+--------------+--------------+
@@ -36,11 +42,12 @@ format:
 | Fable 5.1 (`fable`)        | $10        | $0.25      | $50        | 100×         | 25×          | 100×         |
 +----------------------------+------------+------------+------------+--------------+--------------+--------------+
 
-Checked 2026-10-23:
-[OpenAI pricing](https://developers.openai.com/api/docs/pricing),
-[Codex models](https://learn.chatgpt.com/docs/models),
+OpenAI checked 2026-11-17:
+[Codex pricing](https://learn.chatgpt.com/docs/pricing),
+[Codex models](https://learn.chatgpt.com/docs/models).
+Claude checked 2026-10-23:
 [Anthropic pricing](https://platform.claude.com/docs/en/about-claude/pricing),
 [Claude Code models](https://code.claude.com/docs/en/model-config).
 
-[^codex]: Credits = 25 × the OpenAI API USD rate; Codex does not charge for cache writes. Fast mode: 2× the standard rate. GPT-5.6 Luna/Terra/Sol remain available during the GPT-6 rollout. API long context (>272K input): 2× input and cached, 1.5× output.
+[^codex]: Standard-speed credit rates; no cache-write charge. API-key usage follows API pricing. Fast: 2× credits; included usage is 2× for GPT-6.2, 2.5× for older models. GPT-6.2 Ultrafast: 6× included usage; purchased credits/PAYG 3× through 2027-02-28, then 6× from 2027-03-01 (Pacific time).
 [^claude]: Anthropic API rates; Pro/Max/Team plans draw from plan usage limits instead. Cache writes: 1.25× input (5m), 2× input (1h). Haiku 5.5 prompts >100K tokens: 5× all rates. `opusplan`: Opus in plan mode, Sonnet for execution.

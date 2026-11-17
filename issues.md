@@ -47,3 +47,6 @@ Project issue index and concise development history.
 - **2026-11-14 — workspace configured:** WSL workspace terminals activate `cef_cheatsheet`; added supported `QUARTO_DART_SASS` pointing to its existing `bin/sass`, resolving the missing Sass executable.
 - **Verification:** Quarto 1.9.38 starts in the activated environment; HTML rendering now fails in Deno `openKv` with `unable to open database file` while opening the Sass cache.
 - **Outstanding:** cache access and complete rendering remain unverified; no cache permissions or environment installation changed.
+- **2026-11-17 — Typst render verified:** rendering `ref/agents.qmd` initially failed with missing `bin/tools/x86_64/pandoc`; existing Pandoc 3.8.3 and Typst 0.14.2 work through supported process-local `QUARTO_PANDOC` and `QUARTO_TYPST` overrides.
+- **Solution:** extended the [startup runbook](.agents/runbooks/quarto-conda.md); no installation or environment changes.
+- **Verification:** Quarto 1.9.38 produced a one-page `_site/ref/agents.pdf`; HTML Sass cache access remains unverified.
