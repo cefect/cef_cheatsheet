@@ -1,6 +1,6 @@
 ---
 title: "Agents"
-subtitle: "Burn = cost multiple vs GPT-6 Luna (both tables)"
+subtitle: "Burn = cost multiple vs GPT-6 Luna or Claude Haiku 5.5"
 format:
   typst:
     include-in-header: landscape.typ
@@ -35,19 +35,23 @@ format:
 +----------------------------+------------+------------+------------+--------------+--------------+--------------+
 | Sonnet 5.5 (`sonnet`)      | $2         | $0.10      | $10        | 20×          | 10×          | 20×          |
 +----------------------------+------------+------------+------------+--------------+--------------+--------------+
-| Opus 5.5 (`opus`, default) | $4         | $0.20      | $20        | 40×          | 20×          | 40×          |
+| Opus 5.5 (`opus`)          | $4         | $0.20      | $20        | 40×          | 20×          | 40×          |
 +----------------------------+------------+------------+------------+--------------+--------------+--------------+
 | Opus 5.5 fast (`/fast`)    | $8         | $0.40      | $40        | 80×          | 40×          | 80×          |
 +----------------------------+------------+------------+------------+--------------+--------------+--------------+
-| Fable 5.1 (`fable`)        | $10        | $0.25      | $50        | 100×         | 25×          | 100×         |
+| Fable 5.2 (`fable`)        | $8         | $0.20      | $40        | 80×          | 20×          | 80×          |
++----------------------------+------------+------------+------------+--------------+--------------+--------------+
+| Fable 5.1                 | $10        | $0.25      | $50        | 100×         | 25×          | 100×         |
++----------------------------+------------+------------+------------+--------------+--------------+--------------+
+| Fable 5.2 fast (`/fast`)   | $16        | $0.40      | $80        | 160×         | 40×          | 160×         |
 +----------------------------+------------+------------+------------+--------------+--------------+--------------+
 
 OpenAI checked 2026-11-17:
 [Codex pricing](https://learn.chatgpt.com/docs/pricing),
 [Codex models](https://learn.chatgpt.com/docs/models).
-Claude checked 2026-10-23:
+Claude checked 2026-11-17:
 [Anthropic pricing](https://platform.claude.com/docs/en/about-claude/pricing),
 [Claude Code models](https://code.claude.com/docs/en/model-config).
 
 [^codex]: Standard-speed credit rates; no cache-write charge. API-key usage follows API pricing. Fast: 2× credits; included usage is 2× for GPT-6.2, 2.5× for older models. GPT-6.2 Ultrafast: 6× included usage; purchased credits/PAYG 3× through 2027-02-28, then 6× from 2027-03-01 (Pacific time).
-[^claude]: Anthropic API rates; Pro/Max/Team plans draw from plan usage limits instead. Cache writes: 1.25× input (5m), 2× input (1h). Haiku 5.5 prompts >100K tokens: 5× all rates. `opusplan`: Opus in plan mode, Sonnet for execution.
+[^claude]: Anthropic API rates and current CLI aliases. Alias targets vary by version and provider. Fable 5.2 requires Claude Code 2.1.321+, and Opus 5.5 fast requires 2.1.280+. Select Fable 5.1 with `/model claude-fable-5-1`. Subscription fast mode uses usage credits. Cache writes cost 1.25× input (5m) or 2× input (1h). Haiku 5.5 prompts over 100K tokens cost 5× all rates. `opusplan` uses Opus for planning and Sonnet for execution.
