@@ -6,8 +6,18 @@ Project issue index and concise development history.
 | --- | --- | --- |
 | [HUC-001](#huc-001-nested-huc-reference-sheets) | Data acquisition in progress | Upper Colorado HUC2–HUC12 reference collection |
 | [ENV-001](#env-001-conda-quarto-launcher-paths) | Startup workaround verified | Conda Quarto 1.9.38 on CEFTOP WSL |
+| [AGENT-001](#agent-001-official-model-reference-and-refresh-skill) | Reference refreshed | Agent model sources, descriptions, release dates, and pricing definitions |
 
 # 2. Issues
+
+## AGENT-001: Official model reference and refresh skill
+
+- **2026-11-24 — refreshed:** [agent sheet](ref/agents.qmd) checked against linked official OpenAI and Anthropic pricing, model guides, release records, and CLI documentation.
+- **Finding:** existing token rates remain current; added linked base-model release dates, official description excerpts, pricing-column definitions, and explicit provider-specific Burn calculations.
+- **Client scope:** local Codex CLI 0.167.1 and Claude Code 2.1.269 inspected with local help; current Claude aliases require newer versions as documented in the sheet.
+- **Maintenance:** created and applied [project-local update skill](.agents/skills/update-agent-models/SKILL.md); no packages installed or clients updated.
+- **Verification:** skill validator, all 42 Burn ratios, reference-link definitions, and single-use footnotes checked; Quarto 1.9.38 rendered one landscape US Letter page with 12pt table text and 8pt footnotes, visually inspected.
+- **HTML:** complete render verified using the ENV-001 temporary-cache procedure; outputs `_site/ref/agents.html` and `_site/ref/agents.pdf`.
 
 ## HUC-001: Nested HUC reference sheets
 
@@ -50,3 +60,6 @@ Project issue index and concise development history.
 - **2026-11-17 — Typst render verified:** rendering `ref/agents.qmd` initially failed with missing `bin/tools/x86_64/pandoc`; existing Pandoc 3.8.3 and Typst 0.14.2 work through supported process-local `QUARTO_PANDOC` and `QUARTO_TYPST` overrides.
 - **Solution:** extended the [startup runbook](.agents/runbooks/quarto-conda.md); no installation or environment changes.
 - **Verification:** Quarto 1.9.38 produced a one-page `_site/ref/agents.pdf`; HTML Sass cache access remains unverified.
+- **2026-11-24 — HTML cache workaround verified:** default-cache rendering reproduced Deno `openKv` / `unable to open database file`; Quarto's installed `xdgUserCacheDir` honors `XDG_CACHE_HOME`.
+- **Solution:** a process-local fresh `/tmp` cache allowed complete HTML rendering, followed by a successful one-page Typst render; recorded in the [runbook](.agents/runbooks/quarto-conda.md#21-html-sass-cache-access).
+- **Scope:** no persistent environment, default-cache, package, or permission changes; original cache access remains unresolved.

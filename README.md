@@ -33,6 +33,7 @@ The preview server opens the rendered site and refreshes when source files chang
 ## Reference sheets
 
 - Non-command sheets live in [ref/](ref/).
+- Refresh agent models with `$update-agent-models`; project skill: [.agents/skills/update-agent-models/SKILL.md](.agents/skills/update-agent-models/SKILL.md).
 - Each renders to HTML plus a one-page US Letter PDF (Typst), linked from the page.
 - Print rules (12pt min, 6pt min footnotes, one page, greyscale, zebra rows): [ADR 0001](docs/adr/0001-reference-sheet-print-format.md).
 - Shared print settings: [ref/_metadata.yml](ref/_metadata.yml) and [ref/typst-template.typ](ref/typst-template.typ).

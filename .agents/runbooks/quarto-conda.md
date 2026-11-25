@@ -5,7 +5,7 @@ Run the existing Conda Quarto launcher when its default share and Deno paths do 
 | Item | Applicability |
 | --- | --- |
 | Environment | CEFTOP WSL, existing `cef_cheatsheet` Conda environment |
-| Last verified | 2026-11-17; Quarto 1.9.38, Pandoc 3.8.3, Typst 0.14.2 |
+| Last verified | 2026-11-24; Quarto 1.9.38, Pandoc 3.8.3, Typst 0.14.2 |
 | Evidence | [ENV-001](../../issues.md#env-001-conda-quarto-launcher-paths) |
 | Authorization | Read-only environment inspection authorized by implementation of plan section 3.1 |
 | Limits | Process-local supported overrides; no installation, package edits, symlinks, or sandbox bypass |
@@ -36,6 +36,25 @@ Notes:
 - Last render check passed tool discovery but stopped at Deno `openKv` with `unable to open database file` in the Sass cache; see ENV-001 before further troubleshooting.
 - **2026-11-17:** Typst rendering also requires the supported `QUARTO_PANDOC` and `QUARTO_TYPST` overrides above; the launcher otherwise requests missing `bin/tools/x86_64/pandoc`.
 - **Verification:** `quarto render ref/agents.qmd --to typst` produced a single-page `_site/ref/agents.pdf` with all five overrides; HTML cache access remains unverified.
+
+## 2.1. HTML Sass cache access
+
+Use when HTML rendering reaches Deno `openKv` and fails with `unable to open database file` in the default Sass cache.
+
+- **Prerequisites:** the tool overrides above are active; `/tmp` is writable.
+- **Scope/source:** reversible local render verification authorized by the 2026-11-24 agent-sheet update request; no persistent environment changes, permission changes, or sandbox escalation required for rendering.
+- **Evidence:** installed Quarto 1.9.38 resolves its cache through `XDG_CACHE_HOME` (`core/appdirs.ts` in `bin/quarto.js`).
+- **Procedure:** in the render shell, use a fresh temporary cache and render the requested page.
+
+```bash
+export XDG_CACHE_HOME="$(mktemp -d /tmp/cef-cheatsheet-quarto-cache.XXXXXX)"
+quarto render ref/agents.qmd --to html
+```
+
+Notes:
+- The override lasts only for the current shell; the default cache remains untouched.
+- **2026-11-24 verification:** complete HTML render produced `_site/ref/agents.html`; the following Typst render produced one landscape Letter page at `_site/ref/agents.pdf`.
+- **Retirement:** stop using this override once normal rendering can open the default cache, or after a Quarto update changes cache handling.
 
 # 3. Retirement
 
