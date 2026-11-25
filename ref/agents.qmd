@@ -1,91 +1,174 @@
 ---
 title: "Agents"
-subtitle: "Burn = cost multiple vs GPT-6 Luna or Claude Haiku 5.5"
+subtitle: "Model pricing and capabilities"
+filters:
+  - agents-layout.lua
 format:
+  html:
+    css: agents.css
   typst:
     include-in-header: landscape.typ
 ---
 
-Verified **2026-11-24**.
-Pricing columns and Burn ratios defined below.[^columns]
+Prices and model information verified **2026-11-24**.
 
-## 1. Codex (credits per 1M tokens)
+```{=html}
+<div class="cost-legend" aria-label="Cost scale: green is cheaper, red is more expensive">
+  <span>Cheaper</span><span class="cost-legend-scale" aria-hidden="true"></span><span>More expensive</span>
+  <span>Compared within each column and provider, using a logarithmic scale.</span>
+</div>
+```
 
-+----------------------------+-------------------+-------+--------+--------+----------+--------------+-----------+
-| Model (`codex -m`)[^codex] | Released          | Input | Cached | Output | Burn: in | Burn: cached | Burn: out |
-+============================+===================+=======+========+========+==========+==============+===========+
-| `gpt-6-luna`[^luna]        | [2026-09-22][r6]  | 2.5   | 0.25   | 12.5   | 1×       | 1×           | 1×        |
-+----------------------------+-------------------+-------+--------+--------+----------+--------------+-----------+
-| `gpt-6.1-terra`[^terra]    | [2026-10-26][rt]  | 25    | 1.25   | 125    | 10×      | 5×           | 10×       |
-+----------------------------+-------------------+-------+--------+--------+----------+--------------+-----------+
-| `gpt-6-sol`[^sol]          | [2026-09-22][r6]  | 50    | 5      | 250    | 20×      | 20×          | 20×       |
-+----------------------------+-------------------+-------+--------+--------+----------+--------------+-----------+
-| `gpt-6.1-sol`[^sol61]      | [2026-09-29][r61] | 50    | 2.5    | 250    | 20×      | 10×          | 20×       |
-+----------------------------+-------------------+-------+--------+--------+----------+--------------+-----------+
-| `gpt-6.2-sol`[^sol62]      | [2026-11-17][r62] | 50    | 2.5    | 250    | 20×      | 10×          | 20×       |
-+----------------------------+-------------------+-------+--------+--------+----------+--------------+-----------+
-| `gpt-6.2-astra`[^astra62]  | [2026-11-17][r62] | 200   | 10     | 1,000  | 80×      | 40×          | 80×       |
-+----------------------------+-------------------+-------+--------+--------+----------+--------------+-----------+
-| `gpt-6-astra`[^astra]      | [2026-09-03][ra]  | 250   | 25     | 1,250  | 100×     | 100×         | 100×      |
-+----------------------------+-------------------+-------+--------+--------+----------+--------------+-----------+
+## 1. Codex
 
-## 2. Claude Code (USD per 1M tokens)
+### 1.1. Token costs (credits per 1M tokens)
 
-+--------------------------------+-----------------------+-------+-----------+--------+----------+--------------+-----------+
-| Model (`/model`)[^claude]      | Released              | Input | Cache hit | Output | Burn: in | Burn: cached | Burn: out |
-+================================+=======================+=======+===========+========+==========+==============+===========+
-| Haiku 5.5 (`haiku`)[^haiku]    | [2026-10-07][haiku]   | $0.10 | $0.01     | $0.50  | 1×       | 1×           | 1×        |
-+--------------------------------+-----------------------+-------+-----------+--------+----------+--------------+-----------+
-| Sonnet 5.5 (`sonnet`)[^sonnet] | [2026-09-28][sonnet]  | $2    | $0.10     | $10    | 20×      | 10×          | 20×       |
-+--------------------------------+-----------------------+-------+-----------+--------+----------+--------------+-----------+
-| Opus 5.5 (`opus`)[^opus]       | [2026-09-22][opus]    | $4    | $0.20     | $20    | 40×      | 20×          | 40×       |
-+--------------------------------+-----------------------+-------+-----------+--------+----------+--------------+-----------+
-| Opus 5.5 fast (`/fast`)        | [2026-09-22][opus]    | $8    | $0.40     | $40    | 80×      | 40×          | 80×       |
-+--------------------------------+-----------------------+-------+-----------+--------+----------+--------------+-----------+
-| Fable 5.2 (`fable`)[^fable52]  | [2026-11-09][fable52] | $8    | $0.20     | $40    | 80×      | 20×          | 80×       |
-+--------------------------------+-----------------------+-------+-----------+--------+----------+--------------+-----------+
-| Fable 5.1[^fable51]            | [2026-09-01][fable51] | $10   | $0.25     | $50    | 100×     | 25×          | 100×      |
-+--------------------------------+-----------------------+-------+-----------+--------+----------+--------------+-----------+
-| Fable 5.2 fast (`/fast`)       | [2026-11-09][fable52] | $16   | $0.40     | $80    | 160×     | 40×          | 160×      |
-+--------------------------------+-----------------------+-------+-----------+--------+----------+--------------+-----------+
+::: {.cost-table}
 
-Official sources: [Codex pricing][cp], [models][cm], [release log][cl]; [Claude pricing][ap], [CLI models][cc], [fast mode][cf].
-Descriptions below quote official excerpts; release links identify the base model (also for fast rows).
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+| Model (`codex -m`)             | Input    | Cached     | Output   | Burn: in   | Burn: cached | Burn: out  |
++================================+==========+============+==========+============+==============+============+
+| `gpt-6-luna`                   | 2.5      | 0.25       | 12.5     | 1×         | 1×           | 1×         |
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+| `gpt-6.1-terra`                | 25       | 1.25       | 125      | 10×        | 5×           | 10×        |
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+| `gpt-6-sol`                    | 50       | 5          | 250      | 20×        | 20×          | 20×        |
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+| `gpt-6.1-sol`                  | 50       | 2.5        | 250      | 20×        | 10×          | 20×        |
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+| `gpt-6.2-sol`                  | 50       | 2.5        | 250      | 20×        | 10×          | 20×        |
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+| `gpt-6.2-astra`                | 200      | 10         | 1,000    | 80×        | 40×          | 80×        |
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+| `gpt-6-astra`                  | 250      | 25         | 1,250    | 100×       | 100×         | 100×       |
++--------------------------------+----------+------------+----------+------------+--------------+------------+
 
-[^columns]: **1M** = one million tokens; rates apply separately to each token category.
-    **Input**: new, uncached prompt/context tokens (including history and tool results).
-    **Cached / Cache hit**: input tokens reused from a stored prompt prefix.
-    **Output**: generated tokens, including billed reasoning/thinking tokens.
-    **Burn: in / cached / out**: row rate ÷ baseline rate in the corresponding column (GPT-6 Luna for Codex; Haiku 5.5 for Claude).
-    Example: 25 ÷ 2.5 = 10× input burn.
-    Burn is calculated here, not a provider metric; credits and USD are not directly comparable.
+:::
 
-[^codex]: [Standard-speed credit rates][cp]; no cache-write charge.
-    API-key usage follows API pricing; credits alone do not determine included subscription usage.
-    Fast: 2× credits; included usage is 2× for GPT-6.2, 2.5× for older models.
-    GPT-6.2 Ultrafast: 6× included usage; purchased credits/PAYG 3× through 2027-02-28, then 6× from 2027-03-01 (Pacific time).
+::: {.table-notes}
 
-[^luna]: OpenAI: “focused, high-volume tasks” ([model guide][cm]).
-[^terra]: OpenAI: “detailed visual reasoning and precise computer use” ([announcement][rt]).
-[^sol]: OpenAI: “complex coding and agentic workflows” ([release log][cl]).
-[^sol61]: OpenAI: “Near-Astra intelligence for a fifth of the price” ([announcement][r61]).
-[^sol62]: OpenAI: “our efficient, versatile model for everyday work” ([announcement][r62]).
-[^astra62]: OpenAI: “our new frontier model for your hardest projects” ([announcement][r62]).
-[^astra]: OpenAI: “reasoning and computer use” ([model guide][cm]).
+**Columns:** 1M = one million tokens.
+**Input** = new, uncached prompt/context tokens, including history and tool results.
+**Cached** = input tokens reused from a stored prompt prefix.
+**Output** = generated tokens, including billed reasoning/thinking tokens.
 
-[^claude]: [Anthropic API rates][ap]; [CLI aliases][cc] vary by version/provider.
-    Minimum CLI versions: Haiku 5.5 2.1.293; Sonnet 5.5 2.1.284; Opus 5.5 2.1.280; Fable 5.2 2.1.321.
-    Fable 5.1: select `/model claude-fable-5-1` (2.1.257+).
-    Subscription fast mode uses usage credits; fast rows share base model descriptions and release dates.
-    Cache writes cost 1.25× input (5m) or 2× input (1h).
-    Haiku 5.5 prompts over 100K tokens cost 5× all rates.
-    `opusplan` uses Opus for planning and Sonnet for execution.
+**Burn: in / cached / out** = row rate ÷ GPT-6 Luna rate in the corresponding column.
+Ratios are calculated here; credits and USD are not directly comparable.
 
-[^haiku]: Anthropic: “For high-volume, latency-sensitive tasks such as classification, extraction, and routing” ([overview][haiku]).
-[^sonnet]: Anthropic: “The best combination of speed and intelligence” ([overview][sonnet]).
-[^opus]: Anthropic: “For long-running agentic coding and knowledge work” ([overview][opus]).
-[^fable52]: Anthropic: “For demanding reasoning and long-horizon agentic work” ([overview][fable52]).
-[^fable51]: Anthropic: “coding, knowledge work, and long-running problem-solving tasks” ([announcement](https://www.anthropic.com/claude-fable-and-mythos-5-1)).
+**Billing:** [Standard-speed Codex credit rates][cp]; no cache-write charge.
+API-key usage follows API pricing; credits alone do not determine included subscription usage.
+Fast: 2× credits; included usage is 2× for GPT-6.2, 2.5× for older models.
+GPT-6.2 Ultrafast: 6× included usage; purchased credits/PAYG 3× through 2027-02-28, then 6× from 2027-03-01 (Pacific time).
+
+:::
+
+### 1.2. Model releases and official descriptions
+
+::: {.model-table}
+
++------------------------------+------------------------+----------------------------------------------------------------------------------------------------+
+| Model                        | Released               | Official description (excerpt)                                                                     |
++==============================+========================+====================================================================================================+
+| `gpt-6-luna`                 | [2026-09-22][r6]       | “focused, high-volume tasks” — [model guide][cm]                                                   |
++------------------------------+------------------------+----------------------------------------------------------------------------------------------------+
+| `gpt-6.1-terra`              | [2026-10-26][rt]       | “detailed visual reasoning and precise computer use” — [announcement][rt]                          |
++------------------------------+------------------------+----------------------------------------------------------------------------------------------------+
+| `gpt-6-sol`                  | [2026-09-22][r6]       | “complex coding and agentic workflows” — [release log][cl]                                         |
++------------------------------+------------------------+----------------------------------------------------------------------------------------------------+
+| `gpt-6.1-sol`                | [2026-09-29][r61]      | “Near-Astra intelligence for a fifth of the price” — [announcement][r61]                           |
++------------------------------+------------------------+----------------------------------------------------------------------------------------------------+
+| `gpt-6.2-sol`                | [2026-11-17][r62]      | “our efficient, versatile model for everyday work” — [announcement][r62]                           |
++------------------------------+------------------------+----------------------------------------------------------------------------------------------------+
+| `gpt-6.2-astra`              | [2026-11-17][r62]      | “our new frontier model for your hardest projects” — [announcement][r62]                           |
++------------------------------+------------------------+----------------------------------------------------------------------------------------------------+
+| `gpt-6-astra`                | [2026-09-03][ra]       | “reasoning and computer use” — [model guide][cm]                                                   |
++------------------------------+------------------------+----------------------------------------------------------------------------------------------------+
+
+:::
+
+::: {.table-notes}
+
+**Sources:** [OpenAI model guide][cm], [release log][cl], and linked announcements.
+Release dates identify the initial model announcement/rollout, not later Chat releases or speed modes.
+
+:::
+
+{{< pagebreak >}}
+
+## 2. Claude Code
+
+### 2.1. Token costs (USD per 1M tokens)
+
+::: {.cost-table}
+
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+| Model (`/model`)               | Input    | Cache hit  | Output   | Burn: in   | Burn: cached | Burn: out  |
++================================+==========+============+==========+============+==============+============+
+| Haiku 5.5 (`haiku`)            | $0.10    | $0.01      | $0.50    | 1×         | 1×           | 1×         |
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+| Sonnet 5.5 (`sonnet`)          | $2       | $0.10      | $10      | 20×        | 10×          | 20×        |
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+| Opus 5.5 (`opus`)              | $4       | $0.20      | $20      | 40×        | 20×          | 40×        |
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+| Opus 5.5 fast (`/fast`)        | $8       | $0.40      | $40      | 80×        | 40×          | 80×        |
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+| Fable 5.2 (`fable`)            | $8       | $0.20      | $40      | 80×        | 20×          | 80×        |
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+| Fable 5.1                      | $10      | $0.25      | $50      | 100×       | 25×          | 100×       |
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+| Fable 5.2 fast (`/fast`)       | $16      | $0.40      | $80      | 160×       | 40×          | 160×       |
++--------------------------------+----------+------------+----------+------------+--------------+------------+
+
+:::
+
+::: {.table-notes}
+
+**Columns:** 1M = one million tokens.
+**Input** = new, uncached prompt/context tokens, including history and tool results.
+**Cache hit** = input tokens reused from a stored prompt prefix.
+**Output** = generated tokens, including billed reasoning/thinking tokens.
+
+**Burn: in / cached / out** = row rate ÷ Haiku 5.5 rate in the corresponding column.
+Ratios are calculated here; credits and USD are not directly comparable.
+
+**Billing:** [Anthropic API rates][ap].
+Cache writes cost 1.25× input (5m) or 2× input (1h).
+Haiku 5.5 prompts over 100K tokens cost 5× all rates.
+Subscription [fast mode][cf] uses usage credits.
+Fast rows use the same base model; release dates and descriptions below also apply to them.
+
+:::
+
+### 2.2. Model releases and official descriptions
+
+::: {.model-table}
+
++------------------------------+------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+| Model                        | Released               | Official description (excerpt)                                                                                                           |
++==============================+========================+==========================================================================================================================================+
+| Haiku 5.5                    | [2026-10-07][haiku]    | “For high-volume, latency-sensitive tasks such as classification, extraction, and routing” — [overview][haiku]                           |
++------------------------------+------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+| Sonnet 5.5                   | [2026-09-28][sonnet]   | “The best combination of speed and intelligence” — [overview][sonnet]                                                                    |
++------------------------------+------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+| Opus 5.5                     | [2026-09-22][opus]     | “For long-running agentic coding and knowledge work” — [overview][opus]                                                                  |
++------------------------------+------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+| Fable 5.2                    | [2026-11-09][fable52]  | “For demanding reasoning and long-horizon agentic work” — [overview][fable52]                                                            |
++------------------------------+------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+| Fable 5.1                    | [2026-09-01][fable51]  | “coding, knowledge work, and long-running problem-solving tasks” — [announcement](https://www.anthropic.com/claude-fable-and-mythos-5-1) |
++------------------------------+------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+
+:::
+
+::: {.table-notes}
+
+**Sources:** linked Anthropic model overviews provide release dates; descriptions quote linked official excerpts.
+
+**CLI aliases:** [targets vary by version/provider][cc].
+Minimum versions: Haiku 5.5 2.1.293; Sonnet 5.5 2.1.284; Opus 5.5 2.1.280; Fable 5.2 2.1.321.
+Fable 5.1: select `/model claude-fable-5-1` (2.1.257+).
+`opusplan` uses Opus for planning and Sonnet for execution.
+
+:::
 
 [cp]: https://learn.chatgpt.com/docs/pricing
 [cm]: https://learn.chatgpt.com/docs/models

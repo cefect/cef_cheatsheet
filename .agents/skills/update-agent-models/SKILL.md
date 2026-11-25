@@ -38,9 +38,15 @@ Browse official sources on every invocation; do not reuse remembered prices or d
 - Define Input, Cached / Cache hit, Output, all three Burn columns, and per-million-token units.
 - Recompute each Burn value as that row's rate divided by the matching column of its provider's stated baseline; never compare credits directly with USD.
 - Preserve material billing caveats: cache writes, prompt-length thresholds, speed multipliers, subscription versus API billing, alias targets, and minimum versions.
-- Keep grid tables and the one-page landscape PDF; put secondary details in footnotes, following ADR 0001.
+- Keep separate grid tables for pricing and model details (release date plus official description).
+- Place each table's notes immediately beneath it in a `.table-notes` div; avoid document-end footnotes.
+- Preserve the approved ADR 0001 Agents exception: two landscape PDF pages, Codex first and Claude Code second, with an explicit page break between providers.
+- Keep PDF tables at least 12pt and greyscale; only HTML uses the green–yellow–red cost scale.
+- Retain `.cost-table` and `.model-table` wrappers and the page-local `agents-layout.lua` filter and `agents.css`.
+- The filter shades each positive numeric column independently within each provider using a logarithmic scale; keep that explanation with the HTML legend.
 - Render `ref/agents.qmd` to Typst in the existing `cef_cheatsheet` Conda environment, following `.agents/runbooks/quarto-conda.md` when relevant.
-- Verify one US Letter landscape page, readable tables, complete footnotes, source targets, and calculated ratios.
+- Verify exactly two US Letter landscape pages with the correct provider on each, readable tables, complete local notes, source targets, and calculated ratios.
+- Verify HTML cell colors increase from green (cheaper) to red (more expensive), equal values share a color within a column, and model description tables remain uncolored.
 - Validate HTML too when feasible; report any remaining render limitation accurately.
 - Record meaningful source discrepancies or render failures in the existing owning issue, or create a concise issue when new.
 - Report changed facts, verification date, checks, and unresolved facts; do not commit or push unless explicitly requested.

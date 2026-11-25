@@ -18,6 +18,11 @@ Project issue index and concise development history.
 - **Maintenance:** created and applied [project-local update skill](.agents/skills/update-agent-models/SKILL.md); no packages installed or clients updated.
 - **Verification:** skill validator, all 42 Burn ratios, reference-link definitions, and single-use footnotes checked; Quarto 1.9.38 rendered one landscape US Letter page with 12pt table text and 8pt footnotes, visually inspected.
 - **HTML:** complete render verified using the ENV-001 temporary-cache procedure; outputs `_site/ref/agents.html` and `_site/ref/agents.pdf`.
+- **2026-11-24 — readability revision:** user approved the [two-page Agents exception](docs/adr/0001-reference-sheet-print-format.md#exception-agent-model-comparison), with Codex and Claude on separate landscape pages and greyscale printing retained.
+- **Layout:** separate price and release/description tables; footnotes immediately beneath their table; HTML-only green–yellow–red shading compares each numeric column within its provider on a logarithmic scale.
+- **Implementation:** [page filter](ref/agents-layout.lua) formats local notes and computes static HTML cell colors; [scoped CSS](ref/agents.css) adds numeric alignment, a legend, and horizontal scrolling for narrow screens.
+- **Verification:** both formats render; two-page PDF visually checked for provider split, greyscale tables, and complete local notes; HTML structure checked for four tables, adjacent notes, 84 shaded numeric cells, matching colors for equal values, and green/red endpoints.
+- **Maintenance:** refresh skill updated for the approved layout and validated; all prices and 42 Burn ratios preserved.
 
 ## HUC-001: Nested HUC reference sheets
 

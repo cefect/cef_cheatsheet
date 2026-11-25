@@ -34,13 +34,13 @@ The preview server opens the rendered site and refreshes when source files chang
 
 - Non-command sheets live in [ref/](ref/).
 - Refresh agent models with `$update-agent-models`; project skill: [.agents/skills/update-agent-models/SKILL.md](.agents/skills/update-agent-models/SKILL.md).
-- Each renders to HTML plus a one-page US Letter PDF (Typst), linked from the page.
-- Print rules (12pt min, 6pt min footnotes, one page, greyscale, zebra rows): [ADR 0001](docs/adr/0001-reference-sheet-print-format.md).
+- Each renders to HTML plus a US Letter PDF (Typst), linked from the page.
+- Print rules (12pt min, 6pt min footnotes, one page, greyscale, zebra rows): [ADR 0001](docs/adr/0001-reference-sheet-print-format.md); Agents has an approved two-page exception, one provider per page.
 - Shared print settings: [ref/_metadata.yml](ref/_metadata.yml) and [ref/typst-template.typ](ref/typst-template.typ).
 - Landscape sheets add `include-in-header: landscape.typ` under `format: typst:`.
 - Tables are pandoc grid tables; end a cell line with `\` for a hard line break.
 - Put secondary detail in footnotes; reference each footnote once (reused refs print as duplicates).
-- After edits, render one sheet's PDF to `_site/ref/` and confirm it is still one page:
+- After edits, render one sheet's PDF to `_site/ref/` and confirm its page count (one page, or two for Agents):
 
 ```bash
 quarto render ref/dtypes.qmd --to typst
