@@ -54,6 +54,12 @@ find "${args[@]}" -print                  # Preview every matched path.
 find "${args[@]}" -exec rm -rf -- {} +    # Remove every matched path in batches.
 ```
 
+Remove all empty directories under a target, deepest first (keeps the target itself); drop `-delete` to preview. (findutils 4.9.0)
+
+```bash
+find <target_dir> -mindepth 1 -type d -empty -delete
+```
+
 ## System information
 
 Get the current user name. (coreutils 9.4)
